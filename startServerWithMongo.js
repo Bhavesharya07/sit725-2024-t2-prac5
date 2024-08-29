@@ -1,17 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import connectDB from './db.js';
+import router from './router/router.js';
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-require('./db')();
-
-require('./router/router')(app);
+connectDB();
+router(app);
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(new URL('index.html', import.meta.url).pathname);
 });
 
 const PORT = 3000;

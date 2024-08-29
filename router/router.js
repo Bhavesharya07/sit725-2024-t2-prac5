@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { bookAppointment } from '../controller/controller.js';
+
 const router = express.Router();
-const appointmentController = require('../controller/controller');
 
-router.post('/submit_appointment', appointmentController.bookAppointment);
+router.post('/submit_appointment', bookAppointment);
 
-module.exports = (app) => {
+export default (app) => {
     app.use('/appointments', router);
 };

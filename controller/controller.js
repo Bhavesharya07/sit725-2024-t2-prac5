@@ -1,6 +1,6 @@
-const Appointment = require('../model/model'); 
+import Appointment from '../model/model.js';
 
-module.exports.bookAppointment = (req, res) => {
+export const bookAppointment = (req, res) => {
     const appointment = new Appointment({
         fullName: req.body.fullName,
         phoneNumber: req.body.phoneNumber,
@@ -16,4 +16,3 @@ module.exports.bookAppointment = (req, res) => {
             res.status(500).send('Error occurred while booking appointment');
         });
 };
-
